@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="./js/bundle.js"></script>
+    <title>To Do List</title>
+  </head>
+  <body>
+
+    <div id="app">
+      <h1>To Do</h1>
+    <ul>
+      <li v-for="(task, index) in tasks" :class="task.priority === 'High' ? 'hPriority': 'lPriority'">
+      <span>{{task.task}}</span>
+      <span>{{task.priority}}</span>
+      <span v-if="task.done">Done</span>
+
+      <button v-if="!task.done" v-on:click="completeTask(index)">Completed?</button>
+      </li>
+    </ul>
+
+    <input type="text" v-model="newTask"/>
+    <span>
+      <h2>priority</h2>
+      <input type="radio" name="priority" value="High" v-model="radio">
+      <label for="High">High</label><br>
+      <input type="radio" name="priority" value="Low" v-model="radio">
+      <label for="Low">Low</label><br>
+    </span>
+		<button v-on:click ="addNewTask">Add new task</button>
+    </div>
+
+  </body>
+</html>
